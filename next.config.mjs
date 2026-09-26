@@ -3,7 +3,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "img.magnific.com",
+        hostname: "**",
       },
     ],
   },
