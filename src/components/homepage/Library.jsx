@@ -29,7 +29,7 @@ const Library = async () => {
   }
 
   return (
-    <section id="library" className="mx-auto max-w-[1500px] px-6 py-16">
+    <section id="library" className="container mx-auto max-w-[1500px] px-6 py-16">
       <h2 className="text-3xl font-black uppercase text-white">
         THE LIBRARY
       </h2>

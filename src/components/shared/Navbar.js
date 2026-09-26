@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <header className="border-b border-white/10 bg-[#121212] text-white">
-    <nav className="mx-auto grid max-w-[1600px] grid-cols-3 items-center px-6 py-7">
+    <nav className="container mx-auto grid  grid-cols-3 items-center px-6 py-7">
         <Link href="/" className="flex items-center gap-2 justify-self-start">
           <Image
             src={logo}
