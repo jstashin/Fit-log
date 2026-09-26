@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const activePage = "workouts";
@@ -11,7 +12,7 @@ const Navbar = () => {
     <nav className="mx-auto grid max-w-[1600px] grid-cols-3 items-center px-6 py-7">
         <Link href="/" className="flex items-center gap-2 justify-self-start">
           <Image
-            src="/assets/logo.png"
+            src={logo}
             alt=""
             width={32}
             height={32}
