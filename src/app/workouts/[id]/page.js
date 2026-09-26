@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import WorkoutActions from "@/components/shared/WorkoutActions";
 
 export default async function WorkoutDetailsPage({ params }) {
   const { id } = await params;
@@ -101,21 +102,7 @@ export default async function WorkoutDetailsPage({ params }) {
             </ol>
           </section>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button
-              disabled
-              className="rounded-md bg-[#ccff00] px-5 py-3 font-bold text-black opacity-60"
-            >
-              + Add to today&apos;s plan
-            </button>
-
-            <button
-              disabled
-              className="rounded-md border border-gray-600 px-5 py-3 font-bold opacity-60"
-            >
-              ♡ Save for later
-            </button>
-          </div>
+          <WorkoutActions workout={workout} />
         </div>
       </div>
     </main>
