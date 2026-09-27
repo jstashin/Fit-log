@@ -7,7 +7,7 @@ import Footer from "@/components/shared/Footer";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark">
       <body>
     
         <WorkoutProvider>
