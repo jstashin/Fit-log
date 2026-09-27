@@ -1,9 +1,6 @@
 "use client";
-
 import { createContext, useContext, useEffect, useState } from "react";
-
 const WorkoutContext = createContext(null);
-
 export function WorkoutProvider({ children }) {
   const [plan, setPlan] = useState([]);
   const [saved, setSaved] = useState([]);
@@ -12,8 +9,7 @@ export function WorkoutProvider({ children }) {
   useEffect(() => {
     try {
       const stored = JSON.parse(localStorage.getItem("fitlog-workouts"));
-
-      if (stored) {
+     if (stored) {
         setPlan(Array.isArray(stored.plan) ? stored.plan : []);
         setSaved(Array.isArray(stored.saved) ? stored.saved : []);
       }

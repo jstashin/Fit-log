@@ -1,14 +1,17 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { useWorkout } from "@/context/WorkoutContext";
+import { CiClock2 } from "react-icons/ci";
+import { PiFireSimpleFill } from "react-icons/pi";
+import { FaRegStar } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa6";
+import { FaXmark } from "react-icons/fa6";
 
 export default function PlanWorkoutCard({ workout, tab }) {
-  const { markDone, removeFromPlan, removeFromSaved } = useWorkout();
-
-  const handleDone = () => {
+const { markDone, removeFromPlan, removeFromSaved } = useWorkout();
+const handleDone = () => {
     markDone(workout.id);
     toast.success(`${workout.name} marked as done`);
   };
@@ -45,40 +48,52 @@ export default function PlanWorkoutCard({ workout, tab }) {
 
         <p className="mt-1 text-sm text-gray-400">{workout.equipment}</p>
 
-        <div className="mt-3 flex flex-wrap gap-4 text-xs text-gray-400">
-          <span>⏱ {workout.duration} min</span>
-          <span>🔥 {workout.caloriesBurned} kcal</span>
-          <span>★ {workout.rating}</span>
-        </div>
+      <div className="flex flex-wrap items-center gap-5 text-sm text-gray-300">
+  <span className="inline-flex items-center gap-2">
+    <CiClock2 className="text-xl text-[#ccff00]" />
+    {workout.duration} min
+  </span>
+
+  <span className="inline-flex items-center gap-2">
+    <PiFireSimpleFill className="text-lg text-[#ccff00]" />
+    {workout.caloriesBurned} kcal
+  </span>
+
+  <span className="inline-flex items-center gap-2">
+    <FaRegStar className="text-lg text-[#ccff00]" />
+    {workout.rating}
+  </span>
+</div>
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
         <Link
           href={`/workouts/${workout.id}`}
-          className="rounded-md border border-gray-600 px-3 py-2 text-xs font-semibold hover:border-white"
+          className="rounded-3xl border border-gray-600 px-3 py-2 text-xs font-semibold hover:border-white"
         >
           View Details
         </Link>
 
         {tab === "plan" && (
-          <button
-            type="button"
-            onClick={handleDone}
-            disabled={workout.done}
-            className="rounded-md bg-[#ccff00] px-3 py-2 text-xs font-bold text-black disabled:opacity-50"
-          >
-            {workout.done ? "Done ✓" : "✓ Mark as Done"}
-          </button>
-        )}
+  <button
+    type="button"
+    onClick={handleDone}
+    disabled={workout.done}
+    className="inline-flex items-center gap-2 rounded-3xl bg-[#ccff00] px-3 py-2 text-xs font-bold text-black disabled:opacity-50"
+  >
+    <FaCheck aria-hidden="true" />
+    {workout.done ? "Done" : "Mark as Done"}
+  </button>
+)}
 
-        <button
-          type="button"
-          onClick={handleRemove}
-          aria-label={`Remove ${workout.name}`}
-          className="rounded-md border border-gray-600 px-3 py-2 text-sm hover:border-red-400 hover:text-red-400"
-        >
-          ✕
-        </button>
+<button
+  type="button"
+  onClick={handleRemove}
+  aria-label={`Remove ${workout.name}`}
+  className="inline-flex items-center justify-center px-3 py-2 text-sm0"
+>
+  <FaXmark aria-hidden="true" />
+</button>
       </div>
     </article>
   );

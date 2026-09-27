@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import PlanWorkoutCard from "@/components/myplan/PlanWorkoutCard";
@@ -29,11 +28,11 @@ export default function MyPlanPage() {
 
   const sortedWorkouts = [...currentList].sort((a, b) => {
     if (sortBy === "calories") {
-      return b.caloriesBurned - a.caloriesBurned;
+      return a.caloriesBurned - b.caloriesBurned;
     }
 
     if (sortBy === "rating") {
-      return b.rating - a.rating;
+      return a.rating - b.rating;
     }
 
     return a.duration - b.duration;

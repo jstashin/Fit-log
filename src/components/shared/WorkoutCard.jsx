@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-
+import { CiClock2 } from "react-icons/ci";
+import { PiFireSimpleDuotone } from "react-icons/pi";
+import { FaRegStar } from "react-icons/fa6";
 const WorkoutCard = ({ workout }) => {
   return (
     <Link
@@ -33,9 +35,9 @@ const WorkoutCard = ({ workout }) => {
         <p className="mt-1 text-sm text-gray-400">{workout.equipment}</p>
 
         <div className="mt-5 flex flex-wrap gap-4 border-t border-white/10 pt-4 text-sm text-gray-300">
-          <span>⏱ {workout.duration} min</span>
-          <span>🔥 {workout.caloriesBurned} kcal</span>
-          <span>★ {workout.rating}</span>
+          <span className="inline-flex items-center gap-2"><CiClock2 /> {workout.duration} min</span>
+          <span className="inline-flex items-center gap-2"><PiFireSimpleDuotone /> {workout.caloriesBurned} kcal</span>
+          <span className="inline-flex items-center gap-2"><FaRegStar /> {workout.rating}</span>
         </div>
       </div>
     </Link>

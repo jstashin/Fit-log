@@ -9,8 +9,7 @@ export default async function WorkoutDetailsPage({ params }) {
   if (!/^\d+$/.test(id)) {
     notFound();
   }
-
-  const response = await fetch(
+const response = await fetch(
     `https://api.abcz.workers.dev/api/fitlog/${id}`,
     { cache: "no-store" }
   );
@@ -37,10 +36,6 @@ export default async function WorkoutDetailsPage({ params }) {
 
   return (
     <main className="mx-auto max-w-[1500px] px-6 py-10 text-white">
-      <Link href="/" className="text-sm text-[#ccff00] hover:underline">
-        ← Back to workouts
-      </Link>
-
       <div className="mt-8 grid gap-10 lg:grid-cols-2">
         <div className="relative h-[350px] overflow-hidden rounded-xl bg-[#1b1e22] lg:h-[650px]">
           <Image
@@ -74,17 +69,17 @@ export default async function WorkoutDetailsPage({ params }) {
           </div>
 
           <section className="mt-8 rounded-lg border border-white/10 bg-[#1b1e22] p-6">
-            <h2 className="mb-4 text-xl font-bold">KEY SPECS</h2>
-
-            {specs.map(([label, value]) => (
-              <div
-                key={label}
-                className="flex justify-between gap-4 border-t border-white/10 py-3 text-sm"
-              >
-                <span className="text-gray-400">{label}</span>
-                <span className="text-right font-semibold">{value}</span>
-              </div>
-            ))}
+        {specs.map(([label, value], index) => (
+  <div
+    key={label}
+    className={`flex justify-between gap-4 py-3 text-sm ${
+      index === 0 ? "" : "border-t border-white/10"
+    }`}
+  >
+    <span className="text-gray-400">{label}</span>
+    <span className="text-right font-semibold">{value}</span>
+  </div>
+))}
           </section>
 
           <section className="mt-8">
@@ -93,7 +88,7 @@ export default async function WorkoutDetailsPage({ params }) {
             <ol className="mt-4 space-y-3">
               {workout.instructions.map((instruction, index) => (
                 <li key={index} className="flex gap-3 text-gray-300">
-                  <span className="font-bold text-[#ccff00]">
+                  <span className="font-bold text-gray-400">
                     {index + 1}.
                   </span>
                   <span>{instruction}</span>

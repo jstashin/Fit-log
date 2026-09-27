@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <header className="border-b border-white/10 bg-[#121212] text-white">
-      <nav className="mx-auto grid max-w-[1500px] grid-cols-2 items-center gap-y-4 px-6 py-5 md:grid-cols-3">
+      <nav className="container mx-auto grid max-w-[1500px] grid-cols-2 items-center gap-y-4 px-6 py-5 md:grid-cols-3">
         <Link href="/" className="flex items-center gap-2 justify-self-start">
           <Image src={logo} alt="" width={32} height={32} />
           <span className="text-lg font-bold">FITLOG</span>
