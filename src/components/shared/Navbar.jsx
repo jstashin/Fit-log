@@ -11,6 +11,9 @@ const Navbar = () => {
   const activePage = pathname === "/my-plan" ? "plan" : "workouts";
   const { plan, saved } = useWorkout();
 
+  const planCount = plan.filter((workout) => !workout.done).length;
+  const savedCount = saved.length;
+
   return (
     <header className="border-b border-white/10 bg-[#121212] text-white">
       <nav className="mx-auto grid max-w-[1500px] grid-cols-2 items-center gap-y-4 px-6 py-5 md:grid-cols-3">
@@ -47,14 +50,14 @@ const Navbar = () => {
           <Link href="/my-plan" className="flex items-center gap-2">
             <span className="text-gray-300">Plan</span>
             <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-[#ccff00] px-1.5 text-xs font-semibold text-black">
-              {plan.length}
+              {planCount}
             </span>
           </Link>
 
           <Link href="/my-plan" className="flex items-center gap-2">
             <span className="text-gray-400">Saved</span>
             <span className="flex h-6 min-w-6 items-center justify-center rounded-full border border-gray-600 px-1.5 text-xs text-gray-300">
-              {saved.length}
+              {savedCount}
             </span>
           </Link>
         </div>

@@ -10,14 +10,17 @@ export default function MyPlanPage() {
   const [sortBy, setSortBy] = useState("duration");
   const { plan, saved, ready } = useWorkout();
 
-  const activeWorkouts = plan.filter((workout) => !workout.done);
+  const metricWorkouts =
+    activeTab === "plan"
+      ? plan.filter((workout) => !workout.done)
+      : saved;
 
-  const minutes = activeWorkouts.reduce(
+  const minutes = metricWorkouts.reduce(
     (total, workout) => total + workout.duration,
     0
   );
 
-  const calories = activeWorkouts.reduce(
+  const calories = metricWorkouts.reduce(
     (total, workout) => total + workout.caloriesBurned,
     0
   );
@@ -38,26 +41,28 @@ export default function MyPlanPage() {
 
   return (
     <main className="mx-auto min-h-[75vh] max-w-[1500px] px-6 py-12 text-white">
-      <h1 className="text-4xl font-black uppercase">MY PLAN</h1>
+      <h1 className="text-4xl font-black uppercase sm:text-5xl">
+        MY PLAN
+      </h1>
 
       <p className="mt-1 text-sm text-gray-400">
         Cap of five lifts for today. Finish them, then load more.
       </p>
 
       <section className="mt-8 grid grid-cols-3 divide-x divide-white/10 rounded-xl border border-white/10 bg-[#171b23] py-6">
-        <div className="px-5 sm:px-8">
+        <div className="px-4 sm:px-8">
           <p className="text-xs text-gray-400">Exercises</p>
           <p className="mt-2 text-3xl font-bold text-[#ccff00]">
-            {activeWorkouts.length}
+            {metricWorkouts.length}
           </p>
         </div>
 
-        <div className="px-5 sm:px-8">
+        <div className="px-4 sm:px-8">
           <p className="text-xs text-gray-400">Minutes</p>
           <p className="mt-2 text-3xl font-bold">{minutes}</p>
         </div>
 
-        <div className="px-5 sm:px-8">
+        <div className="px-4 sm:px-8">
           <p className="text-xs text-gray-400">Calories</p>
           <p className="mt-2 text-3xl font-bold">{calories}</p>
         </div>

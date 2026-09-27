@@ -33,14 +33,35 @@ export function WorkoutProvider({ children }) {
     }
   }, [plan, saved, ready]);
 
-  const addToPlan = (workout) => {
-    if (!ready) return "loading";
-    if (plan.some((item) => item.id === workout.id)) return "duplicate";
-    if (plan.length >= 5) return "full";
+ const addToPlan = (workout) => {
+  if (!ready) return "loading";
 
-    setPlan((current) => [...current, workout]);
-    return "added";
-  };
+  const activePlan = plan.filter((item) => !item.done);
+
+  if (activePlan.some((item) => item.id === workout.id)) {
+    return "duplicate";
+  }
+
+  if (activePlan.length >= 5) {
+    return "full";
+  }
+
+  setPlan((current) => {
+    const wasDoneBefore = current.some(
+      (item) => item.id === workout.id && item.done
+    );
+
+    if (wasDoneBefore) {
+      return current.map((item) =>
+        item.id === workout.id ? { ...workout, done: false } : item
+      );
+    }
+
+    return [...current, { ...workout, done: false }];
+  });
+
+  return "added";
+};
 
   const addToSaved = (workout) => {
     if (!ready) return "loading";
